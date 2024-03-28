@@ -7,3 +7,7 @@ This is a music player for discord voice channel.
 <img src="https://ffmpeg.org/favicon.ico" width="30" height="30"></a></h1>
 
 ffmpeg is a cross-platform source multimedia tool, able to perform editing, coversion, clipping, merging, decoding and other multimedia files.
+
+```sh
+pip install -r requirments.txt  
+```
