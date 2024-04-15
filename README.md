@@ -10,3 +10,13 @@
   <li>Set environment variables</li>
   <li>Install FFMPEG in python</li>
 </ol>
+<table border=3>
+  <td> There will have a tutorial videos. </td>
+</table>
+<p>When the FFMPEG setup, we need to setup the discord bot.</p>
+<h2>Setup discord bot <img src="https://assets-global.website-files.com/6257adef93867e50d84d30e2/62fddf0fde45a8baedcc7ee5_847541504914fd33810e70a0ea73177e%20(2)-1.png" alt="discord"></h2>
+There is a <code>requirements.txt</code> file in the folder, and type code:
+
+```sh
+pip install -r requirments.txt  
+```
