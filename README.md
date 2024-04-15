@@ -11,3 +11,4 @@ ffmpeg is a cross-platform source multimedia tool, able to perform editing, cove
 ```sh
 pip install -r requirements.txt  
 ```
+and we need key the TOKEN to config.json
