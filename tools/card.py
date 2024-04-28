@@ -2,7 +2,6 @@ import discord
 import pyshorteners
 from datetime import datetime
 
-
 def inf_play(ctx, url=None, title=None, image=None, author=None, like_count=None,foot_msg=None,title_msg=None):
     embed = discord.Embed(title= title_msg, description=title)
     if title:
