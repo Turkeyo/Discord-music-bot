@@ -25,4 +25,4 @@ The packages will install automatically.
 
 When the pacgages installation complete, key in the TOKEN in the <code>.env</code> file
 
-Run <code>main.py</code> and detect it.
+Run <code>main.py</code> and try it.
