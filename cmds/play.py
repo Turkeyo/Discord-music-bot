@@ -11,22 +11,28 @@ class play(MainCog):
     async def play_music(self, ctx, msg=None):
         #Detect the author in voice channel
         try:
-            await connect.conn(ctx,self)
+            voice_channel = ctx.author.voice.channel.connect
         except:
             await ctx.send("You need connect voice channel first....")
             return
+        
+        #connect voice channel
+        if self.vc is False:
+            self.vc = True
+            await connect.conn(ctx,self)
         
         #Chck msg
         if msg:
             #Check msg arguments
             if msg[:5] != "https":
-                title_msg = "arguments format errors..."
+                title_msg = "arguments format wrong..."
                 await ctx.send(embed=inf_play(ctx,title_msg=title_msg))
                 return
             else:
                 song = music_inf(self,msg)
                 self.music_queue.append(song)
                 if self.isplaying == False:
+                    print('run p_music fun')
                     await playfun.p_music(self,ctx,msg)
 
         #Resume music
@@ -70,21 +76,21 @@ class play(MainCog):
             await ctx.send(embed=embed)
             self.ispaused = True
             self.isplaying = False  
-    
+
     @commands.command(name="Skip",description="Skip music",aliases=["sk"])
     async def skip(self,ctx):
         print('Run skip function...')
-        if self.isplaying:
+        if self.isplaying is True:
             self.voice_clients[ctx.guild.id].stop()
             title_msg = "Skip music..."
             embed = inf_play(ctx,title_msg=title_msg)
             await ctx.send(embed=embed)
-            await playfun.n_music(self,ctx)
+            #await playfun.n_music(self,ctx)
         else:
             print('Not music is playing...')
 
     @commands.command(name="list",description="Show music queue",aliases=["li"])
-    async def list(self,ctx):  
+    async def list(self,ctx):
         if len(self.music_queue) > 0:
             await ctx.send('-----Play list-----')
             for i in range(len(self.music_queue)):
@@ -99,6 +105,7 @@ class play(MainCog):
         self.ispaused = False
         self.music_queue = []
         self.voice_clients = {}
+        self.vc = False
         self.play_count = 0
         self.voice_channel = None
 

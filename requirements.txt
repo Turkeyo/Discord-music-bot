@@ -1,4 +1,7 @@
 discord
-ffmpeg
+ffmpeg-python
 yt_dlp
 beautifulsoup4
+python-dotenv
+pyshorteners
+discord.py[voice]

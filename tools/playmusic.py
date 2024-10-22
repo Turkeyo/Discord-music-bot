@@ -1,7 +1,7 @@
-#import asyncio
-#import yt_dlp
+import asyncio
+import yt_dlp
 import discord
-#import ffmpeg
+import ffmpeg
 from tools.card import inf_play
 from tools.music_info import music_inf
 
@@ -14,28 +14,24 @@ class playfun():
         except Exception as  e:
             print(e)
 
-        #First song every times
         m_url = self.music_queue[0]['song']
         if self.play_count == 0:
             self.music_queue.pop(0)
             self.play_count += 1
-
-            self.isplaying = True
-
             player = discord.FFmpegOpusAudio(m_url, **self.ffmpeg_options)
             self.isplaying = True
             self.ispaused = False
             await ctx.send(embed=embed)
-            #song = music_inf(self,song['song'])
-            self.voice_clients[ctx.guild.id].play(player,after=lambda e: self.play_next(ctx))
-
+        try:
+            self.voice_clients[ctx.guild.id].play(player,after=lambda e: self.bot.loop.create_task(playfun.n_music(self,ctx)))
+        except Exception as e:
+            print(e)
 
     async def n_music(self,ctx):
             print('Run play_next...')
             if len(self.music_queue) > 0:
                 self.isplaying = True
                 m_url = self.music_queue[0]['song']
-
                 player = discord.FFmpegOpusAudio(m_url, **self.ffmpeg_options)
                 try:
                     title_msg = "Now playing..."
@@ -47,11 +43,10 @@ class playfun():
                 self.music_queue.pop(0)
                 self.isplaying = True
                 self.ispaused = False
-
-                #async def callback(e):
-                #    self.bot.loop.create_task((await self.play_next(ctx,msg)))
-                    
-                self.voice_clients[ctx.guild.id].play(player,after=lambda e: self.play_next(ctx))#await self.play_next(ctx,msg))
+                try:
+                    self.voice_clients[ctx.guild.id].play(player,after=lambda e: self.bot.loop.create_task(playfun.n_music(self,ctx)))
+                except Exception as e:
+                    print(e)
             else:
                 self.isplaying = False
-                
+                self.play_count = 0
