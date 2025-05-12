@@ -4,7 +4,7 @@
 <h1>preparations🔧</h1>
 
 <h2>FFMPEG <a href="https://ffmpeg.org/"><img height=30 src="https://ffmpeg.org/favicon.ico" alt="ffmpeg"></img></a></h2>
-<p> We need to do three things.</p>
+<p> three steps to install.</p>
 <ol>
   <li>Download FFMPEG file.</li>
   <li>Set environment variables</li>
