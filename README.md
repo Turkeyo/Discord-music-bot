@@ -23,6 +23,6 @@ pip install -r requirments.txt
 ```
 The packages will install automatically.
 
-When the pacgages installation complete, key in the TOKEN in the <code>.env</code> file
+When the packages installation complete, key in the TOKEN in the <code>.env</code> file
 
 Run <code>main.py</code> and try it.
